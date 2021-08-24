@@ -39,6 +39,13 @@
   let lastHole;
   let timeUp = false;
   let score = 0;
+  let gameMusic = new Audio("sounds/gameMusic.mp3");
+  let squeak = new Audio("sounds/squeak.wav");
+  let gameEnd = new Audio("sounds/game-over.wav");
+
+  function playSound() {
+    gameMusic.play();
+  }
 
   function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -69,16 +76,23 @@
   }
 
   function startGame() {
+    playSound();
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     peep();
-    setTimeout(() => timeUp = true, 10000);
-  }
-
+    // setTimeout(() => timeUp = true, 30000);
+    setTimeout(function() {
+      timeUp = true;
+      gameMusic.pause();
+      gameEnd.play();
+      gameMusic.currentTime = 0;
+  }, 30000);
+}
   function bonk(e) {
     if(!e.isTrusted) return; //cheater
     score++;
+    squeak.play();
     this.classList.remove("up");
     scoreBoard.textContent = score;
   }
