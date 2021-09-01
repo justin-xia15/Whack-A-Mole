@@ -16,6 +16,7 @@
       <h2>GAME OVER!</h2>
       <h3 class="user-score">Your score: </h3>
       <h3>High score: </h3>
+      <button class="save">Save score</button>
     </div>
     <div class="hole hole1">
       <div class="mole"></div>
@@ -89,7 +90,7 @@
     timeUp = false;
     score = 0;
     peep();
-    setTimeout(endGame, 3000);
+    setTimeout(endGame, 5000);
 }
   function bonk(e) {
     if(!e.isTrusted) return; //cheater
@@ -106,9 +107,15 @@
       gameMusic.currentTime = 0;
       endBoard.style.display = "block";
       userScore.innerText = `Your score: ${scoreBoard.innerText}`;
+      scores.push(scoreBoard.innerText);
   }
 
   moles.forEach(mole => mole.addEventListener("click", bonk));
+
+  document.querySelector(".save").addEventListener("click",function() {
+    let userName = prompt("Let'save your score! Please enter your name:");
+    localStorage.setItem(userName, scoreBoard.innerText);
+  });
 
 </script>
 </body>
