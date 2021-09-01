@@ -21,6 +21,18 @@ h1 {
   margin-bottom: 0;
 }
 
+h2 {
+  text-align: center;
+  font-size: 8rem;
+  color: gold;
+}
+
+h3 {
+  color: gold;
+  padding-left: 100px;
+  text-align: left;
+  font-size: 3rem;
+}
 .score {
   background: rgba(255,255,255,0.2);
   padding: 0 3rem;
@@ -45,6 +57,14 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+}
+
+.game-over {
+  width: 600px;
+  height: 400px;
+  background-color: #3B0000;
+  display: none;
+  transition: 2.5s;
 }
 
 .hole {
