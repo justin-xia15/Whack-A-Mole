@@ -44,6 +44,7 @@
   const moles = document.querySelectorAll(".mole");
   const userScore = document.querySelector(".user-score");
   const endBoard = document.querySelector(".game-over");
+  let scores = [];
   let lastHole;
   let timeUp = false;
   let score = 0;
@@ -100,6 +101,15 @@
     scoreBoard.textContent = score;
   }
 
+  function getScores() {
+    let userName = prompt("Let'save your score! Please enter your name:");
+    localStorage.setItem(userName, scoreBoard.innerText);
+    for(i = 0; i < localStorage.length; i++){
+      scores.push(localStorage.getItem(localStorage.key(i)));
+      console.log(scores);
+    }
+  } // can sort scores by numerical value but not able to match it to username
+
   function endGame() {
       timeUp = true;
       gameMusic.pause();
@@ -112,10 +122,8 @@
 
   moles.forEach(mole => mole.addEventListener("click", bonk));
 
-  document.querySelector(".save").addEventListener("click",function() {
-    let userName = prompt("Let'save your score! Please enter your name:");
-    localStorage.setItem(userName, scoreBoard.innerText);
-  });
+  document.querySelector(".save").addEventListener("click", getScores);
+
 
 </script>
 </body>
